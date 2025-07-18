@@ -2,11 +2,14 @@ package main
 
 import "fmt"
 
-const spanish = "Spanish"
-const french = "French"
-const englishHelloPrefix = "Hello, "
-const spanishHelloPrefix = "Hola, "
-const frenchHelloPrefix = "Bonjour, "
+const (
+	spanish = "Spanish"
+	french = "French"
+	englishHelloPrefix = "Hello, "
+	spanishHelloPrefix = "Hola, "
+	frenchHelloPrefix = "Bonjour, "
+)
+
 
 // the string is the domain
 func Hello(name, language string) string {
@@ -15,21 +18,27 @@ func Hello(name, language string) string {
 		name = "world"
 	}
 
-	if language == spanish {
-		return spanishHelloPrefix + name
+	return greetingPrefix(language) + name
+}
+
+
+func greetingPrefix(language string) (prefix string) {
+	switch language {
+	case spanish:
+		prefix = spanishHelloPrefix
+	case french:
+		prefix = frenchHelloPrefix
+	default:
+		prefix = englishHelloPrefix
 	}
 
-	if language == french {
-		return frenchHelloPrefix + name
-	}
-
-	return englishHelloPrefix + name
+	return
 }
 
 
 /* 
-   spreate domain from "side effects"
-	 fmt.Println is a side effect "printing to stdout"
+spreate domain from "side effects"
+fmt.Println is a side effect "printing to stdout"
 */
 func main() {
 	fmt.Println(Hello("Chris", "Spanish"))
