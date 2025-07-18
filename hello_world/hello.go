@@ -2,10 +2,16 @@ package main
 
 import "fmt"
 
+const englishHelloPrefix = "Hello, "
 
 // the string is the domain
 func Hello(name string) string {
-	return "Hello, " + name
+
+	if name == "" {
+		name = "world"
+	}
+
+	return englishHelloPrefix + name
 }
 
 
